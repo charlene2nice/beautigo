@@ -4,7 +4,7 @@ from werkzeug.utils import secure_filename
 import sqlite3, os, uuid
 from datetime import datetime
 
-BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 DB_PATH = os.path.join(BASE_DIR, 'beautigo.db')
 UPLOAD_DIR = os.path.join(BASE_DIR, 'uploads')
 ALLOWED_EXT = {'png','jpg','jpeg','webp','gif'}
