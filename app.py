@@ -294,9 +294,6 @@ def review():
     except sqlite3.IntegrityError: conn.close(); return jsonify(error='This booking has already been reviewed.'),409
     conn.close(); return jsonify(ok=True),201
 
-@app.route("/")
-def home():
-    return send_from_directory(".", "index.html")
-    
 if __name__=='__main__':
-    init_db(); app.run(host='127.0.0.1',port=5000,debug=True)
+    init_db()
+    app.run(host='127.0.0.1',port=5000, debug=True)
