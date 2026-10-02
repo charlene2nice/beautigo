@@ -1,0 +1,24 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Booking | BeautiGo</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css"><link rel="stylesheet" href="css/booking.css">
+</head>
+<body>
+<header><div class="nav"><a class="brand" href="index.html"><b>B</b>Beauti<span>Go</span></a><nav><a href="index.html">Home</a><a href="explore.html">Explore</a><a href="index.html#professionals">For Professionals</a></nav><div class="nav-actions"><a class="text-link" href="index.html">About</a><a class="btn small" href="explore.html">Find a Professional</a></div></div></header>
+<main>
+<section class="booking-hero"><div class="crumb"><a id="backLink" href="provider.html">← Back to professional</a></div><div class="progress"><span class="active">1</span><div></div><span>2</span><div></div><span>3</span></div><p class="progress-label"><strong>Review booking</strong><span>Details</span><span>Confirmation</span></p><h1>Complete your booking</h1><p>Review your appointment details, add your information, and confirm your request.</p></section>
+<section class="booking-layout">
+<div class="form-column">
+<section class="card appointment-card"><div class="card-title"><div><small>YOUR APPOINTMENT</small><h2 id="providerName">Amara’s Beauty Studio</h2></div><span class="verified">✓ Verified</span></div><div class="appointment-grid"><div><small>SERVICE</small><strong id="serviceName">Silk Press</strong><span id="serviceCategory">Hair</span></div><div><small>DATE</small><strong id="dateValue">—</strong><span>Local time</span></div><div><small>TIME</small><strong id="timeValue">9:00 AM</strong><span>Appointment time</span></div><div><small>LOCATION</small><strong id="locationValue">Bonamoussadi, Douala</strong><span id="serviceType">At professional</span></div></div><a class="change" id="changeLink" href="provider.html">← Change service or time</a></section>
+<section class="card"><div class="card-title"><div><small>YOUR DETAILS</small><h2>Tell us about you</h2></div><span class="required">* Required</span></div><form id="bookingForm"><div class="form-grid"><label>Full name *<input id="fullName" type="text" placeholder="Enter your full name" required></label><label>Phone number *<input id="phone" type="tel" placeholder="e.g. +237 6XX XXX XXX" required></label><label>Email address *<input id="email" type="email" placeholder="you@example.com" required></label><label>Preferred contact<select id="contact"><option>WhatsApp</option><option>Phone call</option><option>Email</option></select></label></div><label class="full-field">Notes for the professional <textarea id="notes" rows="4" placeholder="Anything your professional should know before the appointment? (Optional)"></textarea></label><label class="check"><input type="checkbox" id="terms" required><span>I agree to BeautiGo’s booking terms and understand that the professional may contact me about this appointment.</span></label><button class="btn full" type="submit">Confirm booking</button></form></section>
+</div>
+<aside class="summary-card"><small>BOOKING SUMMARY</small><div class="provider-mini"><div class="mini-avatar" id="initial">A</div><div><strong id="summaryProvider">Amara’s Beauty Studio</strong><span id="summaryLocation">Bonamoussadi, Douala</span></div></div><div class="summary-line"><span id="summaryService">Silk Press</span><strong id="summaryPrice">8,000 FCFA</strong></div><div class="summary-line"><span>Date</span><strong id="summaryDate">—</strong></div><div class="summary-line"><span>Time</span><strong id="summaryTime">9:00 AM</strong></div><div class="summary-total"><span>Total</span><strong id="totalPrice">8,000 FCFA</strong></div><div class="trust"><span>🔒</span><p><strong>Your information is secure</strong><br>We only use your details to manage this booking.</p></div><div class="need-help"><strong>Need help?</strong><p>Have a question about your appointment? Message the professional from their profile.</p></div></aside>
+</section>
+</main>
+<footer><div class="footer-brand"><a class="brand" href="index.html"><b>B</b>Beauti<span>Go</span></a><p>Beauty, wherever you go.</p></div><div><a href="explore.html">Explore</a><a href="index.html#professionals">For Professionals</a><a href="index.html">About</a></div><div><a href="index.html">Contact</a><a href="index.html">Privacy</a><a href="index.html">Terms</a></div></footer>
+<script src="js/booking.js"></script>
+</body></html>

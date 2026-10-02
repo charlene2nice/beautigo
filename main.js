@@ -1,0 +1,1 @@
+const f=document.querySelector('#homeSearch');if(f)f.onsubmit=e=>{e.preventDefault();const p=new URLSearchParams();if(service.value.trim())p.set('service',service.value.trim());if(location.value.trim())p.set('location',location.value.trim());location.href='explore.html?'+p}

@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Customer Dashboard | BeautiGo</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="auth.css"><link rel="stylesheet" href="css/customer-dashboard.css">
+</head>
+<body>
+<header class="dash-header">
+  <div class="dash-nav">
+    <a class="brand" href="index.html"><b>B</b>Beauti<span>Go</span></a>
+    <nav class="dash-links"><a href="index.html">Home</a><a href="explore.html">Explore</a><a class="active" href="customer-dashboard.html">Dashboard</a></nav>
+    <div class="profile-menu"><button id="profileBtn" class="avatar-btn">C</button><div id="profileDropdown" class="profile-dropdown"><strong id="menuName">Customer</strong><span id="menuEmail">—</span><button id="logoutBtn">Log out</button></div></div>
+  </div>
+</header>
+
+<main class="dashboard-wrap">
+  <section class="welcome-row">
+    <div><span class="eyebrow">MY BEAUTIGO</span><h1>Welcome back, <span id="firstName">there</span> ✨</h1><p>Manage your appointments, discover new professionals, and keep your beauty routine in one place.</p></div>
+    <a class="primary-btn" href="explore.html">+ Book a service</a>
+  </section>
+
+  <section class="stats-grid">
+    <article class="stat-card"><span class="stat-icon">📅</span><div><strong id="upcomingCount">1</strong><span>Upcoming booking</span></div></article>
+    <article class="stat-card"><span class="stat-icon">♡</span><div><strong id="savedCount">3</strong><span>Saved professionals</span></div></article>
+    <article class="stat-card"><span class="stat-icon">★</span><div><strong id="reviewCount">2</strong><span>Reviews written</span></div></article>
+  </section>
+
+  <section class="dashboard-grid">
+    <div class="main-column">
+      <div class="section-heading"><div><span class="eyebrow">YOUR APPOINTMENTS</span><h2>Upcoming booking</h2></div><a href="#past">View history</a></div>
+      <article id="upcomingCard" class="booking-card"></article>
+
+      <div id="past" class="section-heading history-heading"><div><span class="eyebrow">BOOKING HISTORY</span><h2>Past appointments</h2></div></div>
+      <div class="past-list">
+        <article class="past-card"><div class="past-date"><b>18</b><span>SEP</span></div><div class="past-info"><strong>Glow by Nella</strong><span>Gel Manicure · Molyko, Buea</span><small>Completed · 12,000 FCFA</small></div><button class="review-btn" data-provider="Glow by Nella">★ Review</button></article>
+        <article class="past-card"><div class="past-date"><b>03</b><span>SEP</span></div><div class="past-info"><strong>Gentleman’s Cut</strong><span>Classic Haircut · Akwa, Douala</span><small>Completed · 7,000 FCFA</small></div><button class="review-btn" data-provider="Gentleman’s Cut">★ Review</button></article>
+      </div>
+    </div>
+
+    <aside class="side-column">
+      <article class="side-card profile-card"><div class="side-title"><h3>My profile</h3><button id="editProfile">Edit</button></div><div class="profile-big" id="profileAvatar">C</div><h4 id="profileName">Customer</h4><p id="profileEmail">—</p><div class="profile-details"><span>📞 <b id="profilePhone">Add phone number</b></span><span>📍 Cameroon</span></div></article>
+      <article class="side-card"><div class="side-title"><h3>Saved professionals</h3><a href="explore.html">See all</a></div><div class="saved-item"><span class="mini-avatar">A</span><div><strong>Amara’s Beauty Studio</strong><small>Hair · Bonamoussadi</small></div><button>♡</button></div><div class="saved-item"><span class="mini-avatar">N</span><div><strong>Glow by Nella</strong><small>Nails · Molyko</small></div><button>♡</button></div><div class="saved-item"><span class="mini-avatar">G</span><div><strong>Gentleman’s Cut</strong><small>Barbering · Akwa</small></div><button>♡</button></div></article>
+      <article class="side-card help-card"><span class="help-icon">✦</span><div><h3>Need a beauty service?</h3><p>Find trusted professionals near your destination.</p><a href="explore.html">Explore BeautiGo →</a></div></article>
+    </aside>
+  </section>
+</main>
+
+<div id="reviewModal" class="modal"><div class="modal-card"><button class="modal-close" id="closeReview">×</button><span class="eyebrow">YOUR EXPERIENCE</span><h2>Review <span id="reviewProvider">your professional</span></h2><p>How was your appointment?</p><div class="stars" id="stars"><button>★</button><button>★</button><button>★</button><button>★</button><button>★</button></div><textarea id="reviewText" placeholder="Tell other customers about your experience..."></textarea><button id="submitReview" class="primary-btn full">Submit review</button></div></div>
+
+<script src="js/customer-dashboard.js"></script>
+</body></html>
