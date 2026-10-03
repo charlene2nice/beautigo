@@ -17,7 +17,7 @@ app.config['SESSION_COOKIE_SAMESITE'] = 'None'
 app.config['SESSION_COOKIE_SECURE'] = True
 CORS(
     app,
-    origins=["https://tourmaline-pastelito-f50db5.netlify.app"],
+    origins=["https://beautigo.vercel.app", "https://tourmaline-pastelio-f50db5.netlify.app"],
     supports_credentials=True
 )
 app.secret_key = os.environ.get('BEAUTIGO_SECRET', 'change-this-secret-before-production')
