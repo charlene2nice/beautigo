@@ -13,7 +13,11 @@ accountType?.addEventListener('change',toggleProFields); toggleProFields();
 if(signup)signup.addEventListener('submit',async e=>{e.preventDefault();const password=document.querySelector('#password').value,confirm=document.querySelector('#confirmPassword').value;if(password!==confirm)return showNotice('Passwords do not match. Please check them and try again.');
  const payload={firstName:document.querySelector('#firstName').value.trim(),lastName:document.querySelector('#lastName').value.trim(),email:document.querySelector('#email').value.trim().toLowerCase(),phone:document.querySelector('#phone').value.trim(),type:accountType.value,password};
  if(accountType.value==='professional'){payload.businessName=document.querySelector('#businessName')?.value.trim();payload.professionalType=document.querySelector('#professionalType')?.value}
- try{const data=await api('/api/auth/signup',{method:'POST',body:JSON.stringify(payload)});showNotice('Account created successfully! Redirecting...','success');setTimeout(()=>location.href=data.user.type==='professional'?'professional-dashboard.html':'customer-dashboard.html',500)}catch(err){showNotice(err.message)}});
+ try{const data=await api('/api/auth/signup',{method:'POST',body:JSON.stringify(payload)});showNotice('Account created successfully! Redirecting...','success');
+     setTimeout(() => {
+      window.location.href = 'login.html';
+     }, 1000);
+     setTimeout(()=> {location.href=data.user.type==='professional'?'professional-dashboard.html':'customer-dashboard.html',500)}catch(err){showNotice(err.message)}});
 
 const login=document.querySelector('#loginForm');
 if(login)login.addEventListener('submit',async e=>{e.preventDefault();try{const data=await api('/api/auth/login',{method:'POST',body:JSON.stringify({email:document.querySelector('#email').value.trim().toLowerCase(),password:document.querySelector('#password').value})});if(document.querySelector('#remember')?.checked)localStorage.setItem('beautigoRemember','true');showNotice('Welcome back! Redirecting...','success');setTimeout(()=>location.href=data.user.type==='professional'?'professional-dashboard.html':'customer-dashboard.html',400)}catch(err){showNotice(err.message)}});
