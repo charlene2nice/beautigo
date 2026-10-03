@@ -1,6 +1,7 @@
+const API_BASE ="https://beautigo.onrender.com";
 const notice=document.querySelector('#notice');
 function showNotice(message,type='error'){if(!notice)return;notice.textContent=message;notice.className=`notice show ${type}`}
-async function api(path,options={}){const res=await fetch(path,{credentials:'same-origin',headers:{'Content-Type':'application/json',...(options.headers||{})},...options});const data=await res.json().catch(()=>({}));if(!res.ok)throw new Error(data.error||'Something went wrong.');return data}
+async function api(path,options={}){const res=await fetch('${API_BASE}${path}', {credentials:'include',headers:{'Content-Type':'application/json',...(options.headers||{})},...options});const data=await res.json().catch(()=>({}));if(!res.ok)throw new Error(data.error||'Something went wrong.');return data}
 
 document.querySelectorAll('.password-toggle').forEach(btn=>btn.addEventListener('click',()=>{const input=document.getElementById(btn.dataset.target);input.type=input.type==='password'?'text':'password';btn.textContent=input.type==='password'?'Show':'Hide'}));
 
