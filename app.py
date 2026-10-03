@@ -121,7 +121,7 @@ def profile_json(conn,p):
       WHERE r.professional_id=? ORDER BY r.id DESC''',(p['id'],)).fetchall()
     avg=conn.execute('SELECT AVG(rating) a, COUNT(*) n FROM reviews WHERE professional_id=?',(p['id'],)).fetchone()
     return {'id':p['id'],'userId':p['user_id'],'businessName':p['business_name'],'professionalType':p['professional_type'],
-      'bio':p['bio'],'location':p['location'],'serviceType':p['service_type'],'profileImage':p['profile_image'],
+     'profileImage': {"Amara's Beauty Studio": "/nails.jpeg", "Glow by Nella": "/Makeup.jpeg", "Gentleman's Cut": "/Gentleman's Cut.jpeg"}.get(p['business_name'], p['profile_image']),
       'hours':p['hours'],'categories':[x for x in (p['categories'] or '').split(',') if x],
       'rating':round(avg['a'] or 0,1),'reviewCount':avg['n'],
       'services':[{'id':x['id'],'category':x['category'],'name':x['name'],'description':x['description'],'price':x['price'],'duration':x['duration']} for x in services],
