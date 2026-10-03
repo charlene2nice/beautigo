@@ -103,7 +103,7 @@ def user_dict(r):
     return {'id':r['id'],'firstName':r['first_name'],'lastName':r['last_name'],'email':r['email'],'phone':r['phone'] or '','type':r['role']}
 
 def require_user(role=None):
-    uid=session.get('user_id')
+    uid=session.get('user_id') or request.args.get('user_id') or request.headers.get('X-User-ID')
     if not uid: return None, (jsonify({'error':'Authentication required'}),401)
     conn=db(); u=conn.execute('SELECT * FROM users WHERE id=?',(uid,)).fetchone(); conn.close()
     if not u: session.clear(); return None,(jsonify({'error':'Account not found'}),401)
