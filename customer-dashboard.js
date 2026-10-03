@@ -1,11 +1,44 @@
-async function api(path,options={}){const res=await fetch(path,{credentials:'same-origin',...options,headers:{'Content-Type':'application/json',...(options.headers||{})}});const data=await res.json().catch(()=>({}));if(!res.ok)throw new Error(data.error||'Request failed');return data}
+const API_BASE_URL = 'https://beautigo.onrender.com'; // Put your actual Render service URL here
+
+async function api(path, options = {}) {
+  const url = path.startsWith('http') ? path : `${API_BASE_URL}${path}`;
+  const res = await fetch(url, {
+    credentials: 'include',
+    ...options,
+    headers: {
+      'Content-Type': 'application/json',
+      ...(options.headers || {})
+    }
+  });
+  const data = await res.json().catch(() => ({}));
+  if (!res.ok) throw new Error(data.error || data.message || 'Request failed');
+  return data;
+}
 const $=s=>document.querySelector(s);const esc=s=>String(s??'').replace(/[&<>'"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;',"'":'&#39;','"':'&quot;'}[c]));
-const formatDate=v=>{if(!v)return 'Date not selected';const d=new Date(v+'T12:00:00');return d.toLocaleDateString('en-GB',{weekday:'short',day:'numeric',month:'short',year:'numeric'})};
-async function load(){try{const [me,bo]=await Promise.all([api('/api/me'),api('/api/bookings')]);if(me.user.type!=='customer')throw new Error('Please log in with a customer account.');const current=me.user;const full=`${current.firstName||''} ${current.lastName||''}`.trim()||'Customer';
- $('#firstName').textContent=current.firstName||'there';$('#menuName').textContent=full;$('#menuEmail').textContent=current.email||'—';$('#profileName').textContent=full;$('#profileEmail').textContent=current.email||'—';$('#profilePhone').textContent=current.phone||'Add phone number';const initial=(current.firstName||full||'C').charAt(0).toUpperCase();$('#profileAvatar').textContent=initial;$('#profileBtn').textContent=initial;
- const upcoming=bo.bookings.filter(b=>['Pending','Confirmed'].includes(b.status));const past=bo.bookings.filter(b=>['Completed','Cancelled'].includes(b.status));
- $('#upcomingCard').innerHTML=upcoming.length?upcoming.map((b,i)=>`<div class="booking-top"><div class="provider-mini"><span class="provider-avatar">${esc((b.provider||'B')[0])}</span><div><strong>${esc(b.provider)}</strong><span>${esc(b.category)} · ${esc(b.service)}</span></div></div><span class="status">${esc(b.status.toUpperCase())}</span></div><div class="booking-details"><div class="detail"><span>Service</span><strong>${esc(b.service)}</strong></div><div class="detail"><span>Date</span><strong>${esc(formatDate(b.date))}</strong></div><div class="detail"><span>Time</span><strong>${esc(b.time)}</strong></div><div class="detail"><span>Total</span><strong>FCFA ${Number(b.price).toLocaleString()}</strong></div></div><div class="booking-actions"><a class="primary-btn" href="confirmation.html?${new URLSearchParams({provider:b.provider,service:b.service,price:b.price,date:b.date,time:b.time,bookingCode:b.bookingCode}).toString()}">View confirmation</a></div>`).join(''):'<div class="empty-state"><h3>No upcoming bookings yet.</h3><p>Find a professional and book your next beauty appointment.</p><a class="primary-btn" href="explore.html">Explore professionals</a></div>';
- const pastEl=document.querySelector('.past-list'); if(pastEl)pastEl.innerHTML=past.length?past.map(b=>`<article class="past-card"><div class="past-date"><b>${esc((b.date||'').slice(-2)||'—')}</b><span>${esc((b.date||'').slice(5,7)||'—')}</span></div><div class="past-info"><strong>${esc(b.provider)}</strong><span>${esc(b.service)} · ${esc(b.category)}</span><small>${esc(b.status)} · FCFA ${Number(b.price).toLocaleString()}</small></div>${b.status==='Completed'?`<button class="review-btn" data-id="${b.id}" data-provider="${esc(b.provider)}">★ Review</button>`:''}</article>`).join(''):'<p>No booking history yet.</p>';
+const formatDate=v=>{if(!v)return 'Date not selected';const d=new Date(v+'T12:00:00');return d.toLocaleDateString('en-GB',{weekday:'short',day:'numeric',
+                                                                                                                           month:'short',year:'numeric'})};
+async function load(){try{const [me,bo]=await Promise.all([api('/api/me'),api('/api/bookings')]);
+                          if(me.user.type!=='customer')throw new Error('Please log in with a customer account.');
+                          const current=me.user;const full=`${current.firstName||''} ${current.lastName||''}`.trim()||'Customer';
+ $('#firstName').textContent=current.firstName||'there';$('#menuName').textContent=full;$('#menuEmail').textContent=current.email||'—';
+                          $('#profileName').textContent=full;$('#profileEmail').textContent=current.email||'—';
+                          $('#profilePhone').textContent=current.phone||'Add phone number';
+                          const initial=(current.firstName||full||'C').charAt(0).toUpperCase();$('#profileAvatar').textContent=initial;$('#profileBtn').textContent=initial;
+ const upcoming=bo.bookings.filter(b=>['Pending','Confirmed'].includes(b.status));
+                          const past=bo.bookings.filter(b=>['Completed','Cancelled'].includes(b.status));
+ $('#upcomingCard').innerHTML=upcoming.length?upcoming.map((b,i)=>`<div class="booking-top">
+ <div class="provider-mini"><span class="provider-avatar">${esc((b.provider||'B')[0])}</span>
+ <div><strong>${esc(b.provider)}</strong><span>${esc(b.category)} · ${esc(b.service)}</span>
+ </div></div><span class="status">${esc(b.status.toUpperCase())}</span></div>
+ <div class="booking-details"><div class="detail"><span>Service</span><strong>${esc(b.service)}</strong></div>
+ <div class="detail"><span>Date</span><strong>${esc(formatDate(b.date))}</strong></div><div class="detail"><span>Time</span>
+ <strong>${esc(b.time)}</strong></div><div class="detail"><span>Total</span><strong>FCFA ${Number(b.price).toLocaleString()}</strong></div></div>
+ <div class="booking-actions"><a class="primary-btn" href="confirmation.html?${new URLSearchParams
+                                                                               ({provider:b.provider,service:b.service,price:b.price,date:b.date,time:b.time,bookingCode:b.bookingCode}).toString()}">View confirmation</a></div>`).join(''):
+  '<div class="empty-state"><h3>No upcoming bookings yet.</h3><p>Find a professional and book your next beauty appointment.</p><a class="primary-btn" href="explore.html">Explore professionals</a></div>';
+ const pastEl=document.querySelector('.past-list'); if(pastEl)pastEl.innerHTML=past.length?past.map(b=>`<article class="past-card"><div class="past-date">
+ <b>${esc((b.date||'').slice(-2)||'—')}</b><span>${esc((b.date||'').slice(5,7)||'—')}</span></div><div class="past-info">
+ <strong>${esc(b.provider)}</strong><span>${esc(b.service)} · ${esc(b.category)}</span><small>${esc(b.status)} · FCFA ${Number(b.price).toLocaleString()}</small></div>${b.status==='Completed'?`<button class="review-btn" data-id="${b.id}" data-provider="${esc(b.provider)}">★ Review</button>`:''}</article>`).join(''):'<p>No booking history yet.</p>';
  document.querySelectorAll('.review-btn').forEach(btn=>btn.addEventListener('click',()=>openReview(btn.dataset.id,btn.dataset.provider)));
  $('#profileBtn').addEventListener('click',()=>$('#profileDropdown').classList.toggle('open'));document.addEventListener('click',e=>{if(!e.target.closest('.profile-menu'))$('#profileDropdown').classList.remove('open')});$('#logoutBtn').addEventListener('click',async()=>{await api('/api/auth/logout',{method:'POST'});location.href='login.html'});$('#editProfile').addEventListener('click',()=>alert('Customer profile editing can be connected to PUT /api/me in the next iteration.'));
  }catch(e){alert(e.message);location.href='login.html'}}
