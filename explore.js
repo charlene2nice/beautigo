@@ -1,12 +1,12 @@
 const data = [
   ["Amara's Beauty Studio", ['Hair', 'Nails'], 'Bonamoussadi, Douala', 'At provider', 4.9, 5000, 'nails.jpeg'],
   ["Glow by Nella", ['Makeup', 'Lashes & Brows'], 'Molyko, Buea', 'Both', 4.8, 7000, 'Makeup.jpeg'],
-  ["Gentleman's Cut", ['Barbering'], 'Akwa, Douala', 'At provider', 4.9, 4000, "Gentleman's Cut.jpeg"],
+  ["Gentleman's Cut", ['Barbering'], 'Akwa, Douala', 'At provider', 4.9, 4000, 'gentlemans-cut.jpeg'],
   ['The Nail Room', ['Nails'], 'Buea Town, Buea', 'Home service', 4.7, 6000, 'nails.jpeg'],
   ['Luxe Face Studio', ['Makeup', 'Lashes & Brows'], 'Bonapriso, Douala', 'Both', 4.9, 10000, 'Makeup.jpeg'],
   ['Crown & Coils', ['Hair'], 'Molyko, Buea', 'Home service', 4.6, 5500, 'nails.jpeg'],
   ['Serenity Spa', ['Spa & Skincare'], 'Bonanjo, Douala', 'At provider', 4.8, 12000, 'Makeup.jpeg'],
-  ['Fresh Fade Studio', ['Barbering'], 'Molyko, Buea', 'Both', 4.5, 3500, "Gentleman's Cut.jpeg"],
+  ['Fresh Fade Studio', ['Barbering'], 'Molyko, Buea', 'Both', 4.5, 3500, 'gentlemans-cut.jpeg'],
   ['Soft Glow Beauty', ['Hair', 'Makeup'], 'Bepanda, Douala', 'At provider', 4.7, 8000, 'Makeup.jpeg']
 ];
 
@@ -34,13 +34,16 @@ function render() {
 
   grid.innerHTML = a.map(x => `
     <article class="card">
-      <div class="card-img" style="height:185px; overflow:hidden;">
-        <img src="${x[6]}" alt="${x[0]}" style="width:100%; height:100%; object-fit:cover; display:block;" />
+      <div class="card-img">
+        <img src="${x[6]}" alt="${x[0]}" />
       </div>
       <div class="card-body">
         <h3>${x[0]}</h3>
         <p>${x[2]}</p>
-        <div class="tags">${x[1].map(t => `<span>${t}</span>`).join('')}<span>${x[3]}</span></div>
+        <div class="tags">
+          ${x[1].map(t => `<span>${t}</span>`).join('')}
+          <span>${x[3]}</span>
+        </div>
         <div class="meta">
           <span>From ${x[5].toLocaleString()} FCFA<br><b class="rating">★ ${x[4]}</b></span>
           <a href="provider.html?name=${encodeURIComponent(x[0])}">View profile →</a>
