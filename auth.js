@@ -22,7 +22,7 @@ async function api(path, options = {}) {
   const data = await res.json().catch(() => ({}));
 
   if (!res.ok) {
-    throw new Error(data.error || "Something went wrong.");
+    throw new Error(data.message || data.error || "Something went wrong.");
   }
 
   return data;
