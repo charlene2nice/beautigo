@@ -30,8 +30,28 @@ if(signup)signup.addEventListener('submit',async e=>{e.preventDefault();const pa
   showNotice(err.message);
 }
 const login=document.querySelector('#loginForm');
-if(login)login.addEventListener('submit',async e=>{e.preventDefault();try{const data=await api('/api/auth/login',{method:'POST',body:JSON.stringify({email:document.querySelector('#email').value.trim().toLowerCase(),password:document.querySelector('#password').value})});if(document.querySelector('#remember')?.checked)localStorage.setItem('beautigoRemember','true');showNotice('Welcome back! Redirecting...','success');setTimeout(()=>location.href=data.user.type==='professional'?'professional-dashboard.html':'customer-dashboard.html',400)}catch(err){showNotice(err.message)}});
+if(login)login.addEventListener('submit',async e=>{e.preventDefault();try{const data=await api('/api/auth/login',{method:'POST',body:JSON.stringify({email:document.querySelector('#email').value.trim().toLowerCase(),
+                                                                                                                                                     password:document.querySelector('#password').value})});
+                                                                          if(document.querySelector('#remember')?.checked)localStorage.setItem('beautigoRemember','true');
+                                                                          showNotice('Welcome back! Redirecting...','success');setTimeout(()=>location.href=data.user.type==='professional'?'professional-dashboard.html':
+                                                                           'customer-dashboard.html',400)}catch(err){showNotice(err.message)}});
+document.querySelector('#demologin')?.addEventListener('click', async () => {
+  try {
+    await api('/api/auth/login', {
+      method: 'POST',
+      body: JSON.stringify({
+        email: 'demo@beautigo.test',
+        password: 'Demo123!'
+      })
+    });
 
-document.querySelector('#demoLogin')?.addEventListener('click',async()=>{try{await api('/api/auth/login',{method:'POST',body:JSON.stringify({email:'demo@beautigo.test',password:'Demo123!'})});showNotice('Demo customer account ready.','success');setTimeout(()=>location.href='customer-dashboard.html',400)}catch(err){showNotice('Demo customer account is not seeded yet. Create an account to continue.')}});
-document.querySelector('#demoProfessional')?.addEventListener('click',async()=>{try{await api('/api/auth/login',{method:'POST',body:JSON.stringify({email:'demo.pro@beautigo.test',password:'Demo123!'})});showNotice('Demo professional account ready.','success');setTimeout(()=>location.href='professional-dashboard.html',400)}catch(err){showNotice(err.message)}});
-const forgot=document.querySelector('#forgot');if(forgot)forgot.addEventListener('click',e=>{e.preventDefault();showNotice('Password recovery will be connected to email delivery in the production version.','success')});
+    showNotice('Demo professional account ready.', 'success');
+
+    setTimeout(() => {
+      location.href = 'professional-dashboard.html';
+    }, 400);
+
+  } catch (err) {
+    showNotice(err.message);
+  }
+});
