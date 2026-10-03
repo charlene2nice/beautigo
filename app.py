@@ -12,6 +12,9 @@ ALLOWED_EXT = {'png','jpg','jpeg','webp','gif'}
 os.makedirs(UPLOAD_DIR, exist_ok=True)
 
 app = Flask(__name__, static_folder=None)
+# Configure session cookies for cross-site requests between Netlify and Render
+app.config['SESSION_COOKIE_SAMESITE'] = 'None'
+app.config['SESSION_COOKIE_SECURE'] = True
 CORS(
     app,
     origins=["https://tourmaline-pastelito-f50db5.netlify.app"],
