@@ -127,9 +127,12 @@ if (login) {
         })
       });
 
-      if (document.querySelector("#remember")?.checked) {
-        localStorage.setItem("beautigoRemember", "true");
-      }
+     if (data.user) {
+  localStorage.setItem("beautigoUser", JSON.stringify(data.user));
+}
+if (document.querySelector("#remember")?.checked) {
+  localStorage.setItem("beautigoRemember", "true");
+}
 
       showNotice("Welcome back! Redirecting...", "success");
 
