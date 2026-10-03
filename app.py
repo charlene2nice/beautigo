@@ -1,4 +1,5 @@
 from flask import Flask, request, jsonify, session, send_from_directory, redirect
+from flask_cors import CORS
 from werkzeug.security import generate_password_hash, check_password_hash
 from werkzeug.utils import secure_filename
 import sqlite3, os, uuid
@@ -11,6 +12,11 @@ ALLOWED_EXT = {'png','jpg','jpeg','webp','gif'}
 os.makedirs(UPLOAD_DIR, exist_ok=True)
 
 app = Flask(__name__, static_folder=None)
+CORS(
+    app,
+    origins=["https://tourmaline-pastelito-f50db5.netlify.app"],
+    supports_credentials=True
+)
 app.secret_key = os.environ.get('BEAUTIGO_SECRET', 'change-this-secret-before-production')
 app.config['MAX_CONTENT_LENGTH'] = 8 * 1024 * 1024
 
