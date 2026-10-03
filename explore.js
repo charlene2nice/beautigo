@@ -35,7 +35,7 @@ function render() {
   grid.innerHTML = a.map(x => `
     <article class="card">
       <div class="card-img">
-        <img src="${x[6]}" alt="${x[0]}" />
+        <img src="${x[6]}" alt="" onerror="this.style.display='none'" />
       </div>
       <div class="card-body">
         <h3>${x[0]}</h3>
