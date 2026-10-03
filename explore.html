@@ -1,1 +1,74 @@
-<!doctype html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Explore | BeautiGo</title><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@500;600;700;800&display=swap" rel="stylesheet"><link rel="stylesheet" href="css/style.css"><link rel="stylesheet" href="css/explore.css"></head><body><header><div class="nav"><a class="brand" href="index.html"><b>B</b>Beauti<span>Go</span></a><nav><a href="index.html">Home</a><a class="active" href="explore.html">Explore</a></nav><a class="btn small" href="index.html">Home</a></div></header><main><section class="explore-head"><small>BEAUTIGO DIRECTORY</small><h1>Find a professional <i>you'll love.</i></h1><p>Search, compare and book beauty and grooming services wherever you are.</p><form id="searchForm"><input id="q" placeholder="Service or professional"><input id="loc" placeholder="Location"><button class="btn">Search</button></form></section><section class="directory"><aside><h3>Filters</h3><button id="clear">Clear all</button><h4>Category</h4><label><input type="checkbox" value="Hair" class="cat"> Hair</label><label><input type="checkbox" value="Nails" class="cat"> Nails</label><label><input type="checkbox" value="Makeup" class="cat"> Makeup</label><label><input type="checkbox" value="Barbering" class="cat"> Barbering</label><label><input type="checkbox" value="Lashes & Brows" class="cat"> Lashes & Brows</label><label><input type="checkbox" value="Spa & Skincare" class="cat"> Spa & Skincare</label><h4>Service type</h4><label><input type="checkbox" value="At provider" class="type"> At professional</label><label><input type="checkbox" value="Home service" class="type"> Home / mobile</label><label><input type="checkbox" value="Both" class="type"> Both</label><h4>Minimum rating</h4><label><input type="radio" name="rating" value="4.8"> ★ 4.8+</label><label><input type="radio" name="rating" value="4.5"> ★ 4.5+</label></aside><div class="results"><div class="resultbar"><div><small>RESULTS</small><h2 id="heading">Professionals near you</h2><p id="count"></p></div><select id="sort"><option value="recommended">Recommended</option><option value="rating">Highest rated</option><option value="low">Price: low to high</option><option value="high">Price: high to low</option></select></div><div class="grid" id="grid"></div></div></section></main><script src="js/explore.js"></script></body></html>
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Explore | BeautiGo</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="explore.css">
+</head>
+<body>
+  <header>
+    <div class="nav">
+      <a class="brand" href="index.html"><b>B</b>Beauti<span>Go</span></a>
+      <nav>
+        <a href="index.html">Home</a>
+        <a class="active" href="explore.html">Explore</a>
+      </nav>
+      <a class="btn small" href="index.html">Home</a>
+    </div>
+  </header>
+  <main>
+    <section class="explore-head">
+      <small>BEAUTIGO DIRECTORY</small>
+      <h1>Find a professional <i>you'll love.</i></h1>
+      <p>Search, compare and book beauty and grooming services wherever you are.</p>
+      <form id="searchForm">
+        <input id="q" placeholder="Service or professional">
+        <input id="loc" placeholder="Location">
+        <button class="btn">Search</button>
+      </form>
+    </section>
+    <section class="directory">
+      <aside>
+        <h3>Filters</h3>
+        <button id="clear">Clear all</button>
+        <h4>Category</h4>
+        <label><input type="checkbox" value="Hair" class="cat"> Hair</label>
+        <label><input type="checkbox" value="Nails" class="cat"> Nails</label>
+        <label><input type="checkbox" value="Makeup" class="cat"> Makeup</label>
+        <label><input type="checkbox" value="Barbering" class="cat"> Barbering</label>
+        <label><input type="checkbox" value="Lashes & Brows" class="cat"> Lashes & Brows</label>
+        <label><input type="checkbox" value="Spa & Skincare" class="cat"> Spa & Skincare</label>
+        <h4>Service type</h4>
+        <label><input type="checkbox" value="At provider" class="type"> At professional</label>
+        <label><input type="checkbox" value="Home service" class="type"> Home / mobile</label>
+        <label><input type="checkbox" value="Both" class="type"> Both</label>
+        <h4>Minimum rating</h4>
+        <label><input type="radio" name="rating" value="4.8"> ★ 4.8+</label>
+        <label><input type="radio" name="rating" value="4.5"> ★ 4.5+</label>
+      </aside>
+      <div class="results">
+        <div class="resultbar">
+          <div>
+            <small>RESULTS</small>
+            <h2 id="heading">Professionals near you</h2>
+            <p id="count"></p>
+          </div>
+          <select id="sort">
+            <option value="recommended">Recommended</option>
+            <option value="rating">Highest rated</option>
+            <option value="low">Price: low to high</option>
+            <option value="high">Price: high to low</option>
+          </select>
+        </div>
+        <div class="grid" id="grid"></div>
+      </div>
+    </section>
+  </main>
+  <script src="explore.js"></script>
+</body>
+</html>
