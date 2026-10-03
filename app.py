@@ -299,7 +299,8 @@ def review():
     try: conn.execute('INSERT INTO reviews(booking_id,customer_id,professional_id,rating,comment,created_at) VALUES(?,?,?,?,?,?)',(bid,u['id'],b['professional_id'],rating,data.get('comment',''),now())); conn.commit()
     except sqlite3.IntegrityError: conn.close(); return jsonify(error='This booking has already been reviewed.'),409
     conn.close(); return jsonify(ok=True),201
+    
+init_db()
 
 if __name__=='__main__':
-    init_db()
     app.run(host='127.0.0.1',port=5000, debug=True)
