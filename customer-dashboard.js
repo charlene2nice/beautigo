@@ -17,10 +17,17 @@ async function api(path, options = {}) {
 const $=s=>document.querySelector(s);const esc=s=>String(s??'').replace(/[&<>'"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;',"'":'&#39;','"':'&quot;'}[c]));
 const formatDate=v=>{if(!v)return 'Date not selected';const d=new Date(v+'T12:00:00');return d.toLocaleDateString('en-GB',{weekday:'short',day:'numeric',
                                                                                                                            month:'short',year:'numeric'})};
-async function load(){try{const [me,bo]=await Promise.all([api('/api/me'),api('/api/bookings')]);
-                          if(me.user.type!=='customer')throw new Error('Please log in with a customer account.');
-                          const current=me.user;const full=`${current.firstName||''} ${current.lastName||''}`.trim()||'Customer';
- $('#firstName').textContent=current.firstName||'there';$('#menuName').textContent=full;$('#menuEmail').textContent=current.email||'—';
+async function load() {
+  try {
+    const me = JSON.parse(localStorage.getItem('beautigoUser') || 'null');
+    if (!me) throw new Error('Please log in with a customer account');
+
+    // Handle case whether me is the user object directly or { user: ... }
+    const current = me.user || me;
+    if (current.type !== 'customer') throw new Error('Please log in with a customer account');
+
+    const bo = await api(`/api/bookings?user_id=${current.id}`);
+    const full = `${current.firstName || ''} ${current.lastName || ''}`.trim();
                           $('#profileName').textContent=full;$('#profileEmail').textContent=current.email||'—';
                           $('#profilePhone').textContent=current.phone||'Add phone number';
                           const initial=(current.firstName||full||'C').charAt(0).toUpperCase();$('#profileAvatar').textContent=initial;$('#profileBtn').textContent=initial;
