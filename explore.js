@@ -1,7 +1,7 @@
 const data = [
   ["Amara's Beauty Studio", ['Hair', 'Nails'], 'Bonamoussadi, Douala', 'At provider', 4.9, 5000, 'nails.jpeg'],
   ["Glow by Nella", ['Makeup', 'Lashes & Brows'], 'Molyko, Buea', 'Both', 4.8, 7000, 'Makeup.jpeg'],
-  ["Gentleman's Cut", ['Barbering'], 'Akwa, Douala', 'At provider', 4.9, 4000, 'gentlemans-cut.jpeg'],
+  ["Gentleman's Cut", ['Barbering'], 'Akwa, Douala', 'At provider', 4.9, 4000, "Gentleman's Cut.jpeg"],
   ['The Nail Room', ['Nails'], 'Buea Town, Buea', 'Home service', 4.7, 6000, 'nails.jpeg'],
   ['Luxe Face Studio', ['Makeup', 'Lashes & Brows'], 'Bonapriso, Douala', 'Both', 4.9, 10000, 'Makeup.jpeg'],
   ['Crown & Coils', ['Hair'], 'Molyko, Buea', 'Home service', 4.6, 5500, 'nails.jpeg'],
